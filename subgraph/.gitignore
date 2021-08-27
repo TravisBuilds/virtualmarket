@@ -1,0 +1,8 @@
+node_modules/
+build/
+generated/
+graph-node/
+subgraph.arbitrum-one.yaml
+subgraph.arbitrum-rinkeby.yaml
+subgraph.rinkeby.yaml
+subgraph.local.yaml

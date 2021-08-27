@@ -1,0 +1,24 @@
+type ProductToken @entity {
+  id: ID!
+  productName: String!
+  availability: BigInt!
+  maxTokenCount: BigInt!
+  tradeinCount: BigInt!
+  lastUpdate: BigInt!
+  daiPrice: BigInt!
+  tokenBalances: [TokenBalance]! @derivedFrom(field: "productToken")
+}
+
+type User @entity {
+  id: ID!
+  tokenBalances: [TokenBalance]! @derivedFrom(field: "user")
+}
+
+type TokenBalance @entity {
+  id: ID! # {user.id}-{productToken.id}
+  user: User!
+  productToken: ProductToken!
+  balance: BigInt!
+  tradeinCount: BigInt!
+  lastUpdate: BigInt!
+}

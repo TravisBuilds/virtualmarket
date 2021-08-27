@@ -1,0 +1,49 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TokenFactory
+    network: mainnet
+    source:
+      address: '0x0000000000000000000000000000000000000000'
+      abi: TokenFactory
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/tokenFactory.ts
+      entities:
+        - ProductToken
+      abis:
+        - name: TokenFactory
+          file: ./abis/TokenFactory.json
+      eventHandlers:
+        - event: Create(string,bool)
+          handler: handleNewProductToken
+templates:
+  - kind: ethereum/contract
+    name: ProductTokenTemplate
+    network: mainnet
+    source:
+      abi: ProductToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/productToken.ts
+      entities:
+        - ProductToken
+        - User
+        - TokenBalance
+      abis:
+        - name: ProductToken
+          file: ./abis/ProductTokenV1.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Update(address,address)
+          handler: handleUpdate
+        - event: Tradein(indexed address,uint32)
+          handler: handleTradein

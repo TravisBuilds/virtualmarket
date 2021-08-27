@@ -1,0 +1,25 @@
+{
+  "name": "highstreet",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "create:local": "graph create $GITHUB_NAME/$SUBGRAPH_NAME --node http://localhost:8020",
+    "remove:local": "graph remove $GITHUB_NAME/$SUBGRAPH_NAME --node http://localhost:8020",
+    "prepare:arbitrum-one": "mustache config/arbitrum-one.json subgraph.template.yaml > subgraph.arbitrum-one.yaml",
+    "prepare:arbitrum-rinkeby": "mustache config/arbitrum-rinkeby.json subgraph.template.yaml > subgraph.arbitrum-rinkeby.yaml",
+    "prepare:rinkeby": "mustache config/rinkeby.json subgraph.template.yaml > subgraph.rinkeby.yaml",
+    "prepare:local": "mustache config/local.json subgraph.template.yaml > subgraph.local.yaml",
+    "deploy:arbitrum-one": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ $GITHUB_NAME/$SUBGRAPH_NAME subgraph.arbitrum-one.yaml",
+    "deploy:arbitrum-rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ $GITHUB_NAME/$SUBGRAPH_NAME subgraph.arbitrum-rinkeby.yaml",
+    "deploy:rinkeby": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ $GITHUB_NAME/$SUBGRAPH_NAME subgraph.rinkeby.yaml",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 $GITHUB_NAME/$SUBGRAPH_NAME subgraph.local.yaml"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "^0.20.0"
+  },
+  "devDependencies": {
+    "mustache": "^3.1.0",
+    "@graphprotocol/graph-cli": "^0.19.0"
+  }
+}

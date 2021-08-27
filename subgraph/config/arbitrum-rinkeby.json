@@ -1,0 +1,5 @@
+{
+  "network": "arbitrum-rinkeby",
+  "tokenFactoryAddress": "0xa11B6B76451B28e4b380CA6dAd121E65880812c7",
+  "startBlock": "414401"
+}

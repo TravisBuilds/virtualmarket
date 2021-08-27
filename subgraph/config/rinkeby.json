@@ -1,0 +1,5 @@
+{
+  "network": "rinkeby",
+  "tokenFactoryAddress": "0x9901b0c2810252b94Eb6B8Ee7c474cE021557D0D",
+  "startBlock": "9052398"
+}
